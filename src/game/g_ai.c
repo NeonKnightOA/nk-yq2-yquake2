@@ -827,9 +827,13 @@ M_CheckAttack(edict_t *self)
 	{
 		chance *= 0.5;
 	}
-	else if (skill->value >= SKILL_HARD)
+	else if ((skill->value == SKILL_HARD) || (skill->value == SKILL_HARDPLUS))
 	{
 		chance *= 2;
+	}
+	else if (skill->value >= SKILL_NIGHTMARE)
+	{
+		chance *= 4;
 	}
 
 	if (random() < chance)

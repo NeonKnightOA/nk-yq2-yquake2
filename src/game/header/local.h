@@ -490,6 +490,7 @@ extern int gibsthisframe;
 #define SKILL_MEDIUM 1
 #define SKILL_HARD 2
 #define SKILL_HARDPLUS 3
+#define SKILL_NIGHTMARE 4
 
 extern int meansOfDeath;
 

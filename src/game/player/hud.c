@@ -359,9 +359,13 @@ HelpComputerMessage(edict_t *ent)
 	{
 		sk = "hard";
 	}
-	else
+	else if (skill->value == SKILL_HARDPLUS)
 	{
 		sk = "hard+";
+	}
+	else
+	{
+		sk = "nightmare";
 	}
 
 	/* send the layout */

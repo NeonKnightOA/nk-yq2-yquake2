@@ -598,9 +598,9 @@ SpawnEntities(const char *mapname, char *entities, const char *spawnpoint)
 		skill_level = SKILL_EASY;
 	}
 
-	if (skill_level > SKILL_HARDPLUS)
+	if (skill_level > SKILL_NIGHTMARE)
 	{
-		skill_level = SKILL_HARDPLUS;
+		skill_level = SKILL_NIGHTMARE;
 	}
 
 	if (skill->value != skill_level)
@@ -697,7 +697,8 @@ SpawnEntities(const char *mapname, char *entities, const char *spawnpoint)
 					((skill->value == SKILL_MEDIUM) &&
 					 (ent->spawnflags & SPAWNFLAG_NOT_MEDIUM)) ||
 					(((skill->value == SKILL_HARD) ||
-					  (skill->value == SKILL_HARDPLUS)) &&
+					  (skill->value == SKILL_HARDPLUS) ||
+					  (skill->value == SKILL_NIGHTMARE)) &&
 					 (ent->spawnflags & SPAWNFLAG_NOT_HARD))
 					)
 				{

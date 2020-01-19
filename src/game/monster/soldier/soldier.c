@@ -488,7 +488,7 @@ soldier_pain(edict_t *self, edict_t *other /* unused */,
 		return;
 	}
 
-	if (skill->value == SKILL_HARDPLUS)
+	if (skill->value >= SKILL_HARDPLUS)
 	{
 		return; /* no pain anims in nightmare */
 	}
@@ -662,7 +662,7 @@ soldier_attack1_refire1(edict_t *self)
 		return;
 	}
 
-	if (((skill->value == SKILL_HARDPLUS) &&
+	if (((skill->value >= SKILL_HARDPLUS) &&
 		 (random() < 0.5)) || (range(self, self->enemy) == RANGE_MELEE))
 	{
 		self->monsterinfo.nextframe = FRAME_attak102;
@@ -691,7 +691,7 @@ soldier_attack1_refire2(edict_t *self)
 		return;
 	}
 
-	if (((skill->value == SKILL_HARDPLUS) &&
+	if (((skill->value >= SKILL_HARDPLUS) &&
 		 (random() < 0.5)) || (range(self, self->enemy) == RANGE_MELEE))
 	{
 		self->monsterinfo.nextframe = FRAME_attak102;
@@ -751,7 +751,7 @@ soldier_attack2_refire1(edict_t *self)
 		return;
 	}
 
-	if (((skill->value == SKILL_HARDPLUS) &&
+	if (((skill->value >= SKILL_HARDPLUS) &&
 		 (random() < 0.5)) || (range(self, self->enemy) == RANGE_MELEE))
 	{
 		self->monsterinfo.nextframe = FRAME_attak204;
@@ -780,7 +780,7 @@ soldier_attack2_refire2(edict_t *self)
 		return;
 	}
 
-	if (((skill->value == SKILL_HARDPLUS) &&
+	if (((skill->value >= SKILL_HARDPLUS) &&
 		 (random() < 0.5)) || (range(self, self->enemy) == RANGE_MELEE))
 	{
 		self->monsterinfo.nextframe = FRAME_attak204;
@@ -956,7 +956,7 @@ soldier_attack6_refire(edict_t *self)
 		return;
 	}
 
-	if (skill->value == SKILL_HARDPLUS)
+	if (skill->value >= SKILL_HARDPLUS)
 	{
 		self->monsterinfo.nextframe = FRAME_runs03;
 	}
