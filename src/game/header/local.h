@@ -58,6 +58,8 @@
 #define SPAWNFLAG_NOT_HARD 0x00000400
 #define SPAWNFLAG_NOT_DEATHMATCH 0x00000800
 #define SPAWNFLAG_NOT_COOP 0x00001000
+#define SPAWNFLAG_NOT_HARDPLUS 0x00002000
+#define SPAWNFLAG_NOT_NIGHTMARE 0x00004000
 
 #define FL_FLY 0x00000001
 #define FL_SWIM 0x00000002 /* implied immunity to drowining */
@@ -490,6 +492,7 @@ extern int gibsthisframe;
 #define SKILL_MEDIUM 1
 #define SKILL_HARD 2
 #define SKILL_HARDPLUS 3
+#define SKILL_NIGHTMARE 4
 
 extern int meansOfDeath;
 

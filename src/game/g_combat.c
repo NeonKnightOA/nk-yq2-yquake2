@@ -696,7 +696,7 @@ T_Damage(edict_t *targ, edict_t *inflictor, edict_t *attacker,
 			targ->pain(targ, attacker, knockback, take);
 
 			/* nightmare mode monsters don't go into pain frames often */
-			if (skill->value == SKILL_HARDPLUS)
+			if (skill->value >= SKILL_HARDPLUS)
 			{
 				targ->pain_debounce_time = level.time + 5;
 			}

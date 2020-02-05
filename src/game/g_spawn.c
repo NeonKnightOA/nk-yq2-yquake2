@@ -593,14 +593,14 @@ SpawnEntities(const char *mapname, char *entities, const char *spawnpoint)
 
 	skill_level = floor(skill->value);
 
-	if (skill_level < 0)
+	if (skill_level < SKILL_EASY)
 	{
-		skill_level = 0;
+		skill_level = SKILL_EASY;
 	}
 
-	if (skill_level > 3)
+	if (skill_level > SKILL_NIGHTMARE)
 	{
-		skill_level = 3;
+		skill_level = SKILL_NIGHTMARE;
 	}
 
 	if (skill->value != skill_level)
@@ -696,10 +696,12 @@ SpawnEntities(const char *mapname, char *entities, const char *spawnpoint)
 					 (ent->spawnflags & SPAWNFLAG_NOT_EASY)) ||
 					((skill->value == SKILL_MEDIUM) &&
 					 (ent->spawnflags & SPAWNFLAG_NOT_MEDIUM)) ||
-					(((skill->value == SKILL_HARD) ||
-					  (skill->value == SKILL_HARDPLUS)) &&
-					 (ent->spawnflags & SPAWNFLAG_NOT_HARD))
-					)
+					((skill->value == SKILL_HARD) &&
+					 (ent->spawnflags & SPAWNFLAG_NOT_HARD)) ||
+					((skill->value == SKILL_HARDPLUS) &&
+					 (ent->spawnflags & SPAWNFLAG_NOT_HARDPLUS)) ||
+					((skill->value == SKILL_NIGHTMARE) &&
+					 (ent->spawnflags & SPAWNFLAG_NOT_NIGHTMARE)))
 				{
 					G_FreeEdict(ent);
 					inhibit++;
@@ -709,8 +711,9 @@ SpawnEntities(const char *mapname, char *entities, const char *spawnpoint)
 
 			ent->spawnflags &=
 				~(SPAWNFLAG_NOT_EASY | SPAWNFLAG_NOT_MEDIUM |
-				  SPAWNFLAG_NOT_HARD |
-				  SPAWNFLAG_NOT_COOP | SPAWNFLAG_NOT_DEATHMATCH);
+					SPAWNFLAG_NOT_HARD | SPAWNFLAG_NOT_COOP |
+					SPAWNFLAG_NOT_DEATHMATCH | SPAWNFLAG_NOT_HARDPLUS |
+					SPAWNFLAG_NOT_NIGHTMARE);
 		}
 
 		ED_CallSpawn(ent);
