@@ -1104,7 +1104,7 @@ Q_strlwr ( char *s )
 
 	while ( *s )
 	{
-		*s = tolower( *s );
+		*s = tolower( (unsigned char)*s );
 		s++;
 	}
 
@@ -1194,6 +1194,12 @@ FILE *Q_fopen(const char *file, const char *mode)
 	return fopen(file, mode);
 }
 #endif
+
+int
+Q_sort_strcomp(const void *s1, const void *s2)
+{
+	return strcmp(*(char **)s1, *(char **)s2);
+}
 
 /*
  * =====================================================================

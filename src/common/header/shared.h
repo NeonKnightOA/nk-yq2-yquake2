@@ -75,14 +75,24 @@ typedef unsigned char byte;
 	#define YQ2_ATTR_NORETURN
 #endif
 
+#if defined(__GNUC__)
+	/* ISO C11 _Noreturn can't be attached to function pointers, so
+	 * use the gcc/clang-specific version for function pointers, even
+	 * in C11 mode. MSVC __declspec(noreturn) seems to have the same
+	 * restriction as _Noreturn so can't be used here either. */
+	#define YQ2_ATTR_NORETURN_FUNCPTR  __attribute__ ((noreturn))
+#else
+	#define YQ2_ATTR_NORETURN_FUNCPTR  /* nothing */
+#endif
+
 /* angle indexes */
 #define PITCH 0                     /* up / down */
 #define YAW 1                       /* left / right */
 #define ROLL 2                      /* fall over */
 
-#define MAX_STRING_CHARS 1024       /* max length of a string passed to Cmd_TokenizeString */
+#define MAX_STRING_CHARS 2048       /* max length of a string passed to Cmd_TokenizeString */
 #define MAX_STRING_TOKENS 80        /* max tokens resulting from Cmd_TokenizeString */
-#define MAX_TOKEN_CHARS 128         /* max length of an individual token */
+#define MAX_TOKEN_CHARS 1024        /* max length of an individual token */
 
 #define MAX_QPATH 64                /* max length of a quake game pathname */
 
@@ -280,6 +290,9 @@ int Q_strlcat(char *dst, const char *src, int size);
 /* Unicode wrappers that also make sure it's a regular file around fopen(). */
 FILE *Q_fopen(const char *file, const char *mode);
 
+/* Comparator function for qsort(), compares strings. */
+int Q_sort_strcomp(const void *s1, const void *s2);
+
 /* ============================================= */
 
 short BigShort(short l);
@@ -323,7 +336,7 @@ void randk_seed(void);
 extern int curtime; /* time returned by last Sys_Milliseconds */
 
 int Sys_Milliseconds(void);
-void Sys_Mkdir(char *path);
+void Sys_Mkdir(const char *path);
 qboolean Sys_IsDir(const char *path);
 qboolean Sys_IsFile(const char *path);
 
